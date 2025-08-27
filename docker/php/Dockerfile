@@ -15,6 +15,9 @@ RUN apk add --no-cache \
     && composer self-update --2 \
     && echo 'export PATH="$PATH:$HOME/.composer/vendor/bin"' >> ~/.bashrc
 
+RUN apk add --no-cache postgresql-dev \
+    && docker-php-ext-install pdo_pgsql
+
 # PHPの設定ファイルをコピー
 COPY php.ini /usr/local/etc/php/conf.d/custom.ini
 
